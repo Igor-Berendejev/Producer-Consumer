@@ -7,7 +7,7 @@ public class Ship {
     public Ship(int capacity, String type) {
         this.capacity = capacity;
         this.type = type;
-        shipCounter ++;
+        shipCounter++;
         this.name = type + capacity + "/" + shipCounter;
     }
 

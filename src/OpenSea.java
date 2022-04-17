@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class ShipGenerator implements Runnable {
+public class OpenSea implements Runnable {
 
     private Tunnel tunnel;
 
-    public ShipGenerator(Tunnel tunnel) {
+    public OpenSea(Tunnel tunnel) {
         this.tunnel = tunnel;
     }
 

@@ -6,7 +6,7 @@ public class Main {
         Tunnel tunnel = new Tunnel();
 
         ExecutorService service = Executors.newFixedThreadPool(5);
-        service.execute(new ShipGenerator(tunnel));
+        service.execute(new OpenSea(tunnel));
         service.execute(new Pier("Bananas", tunnel));
         service.execute(new Pier("Coal", tunnel));
         service.execute(new Pier("Oil", tunnel));
