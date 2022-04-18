@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class Tunnel {
     private final ArrayList<Ship> shipsInside;
 
+    private boolean finishedWorking = false;
+    private boolean lastShipEntered = false;
+
     public Tunnel() {
         shipsInside = new ArrayList<>();
     }
@@ -26,13 +29,15 @@ public class Tunnel {
 
     public synchronized Ship getShip(String type) {
         Ship ship;
-        if (shipsInside.size() > 0) {
+        if (lastShipEntered && shipsInside.isEmpty()) notifyAll();
+        else if (shipsInside.size() > 0) {
             for (Ship s : shipsInside) {
                 if (s.getType().equals(type)) {
                     ship = s;
                     shipsInside.remove(s);
                     System.out.println("Ship " + ship.getName() + " left the tunnel");
                     notifyAll();
+                    if (lastShipEntered && shipsInside.isEmpty()) finishedWorking = true;
                     return ship;
                 }
             }
@@ -44,5 +49,13 @@ public class Tunnel {
             }
         }
         return null;
+    }
+
+    public boolean isFinishedWorking() {
+        return finishedWorking;
+    }
+
+    public void setLastShipEntered(boolean lastShipEntered) {
+        this.lastShipEntered = lastShipEntered;
     }
 }

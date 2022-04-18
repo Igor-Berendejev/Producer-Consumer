@@ -10,6 +10,7 @@ public class Pier implements Runnable {
     @Override
     public void run() {
         while (true) {
+            if (tunnel.isFinishedWorking()) break;
             Ship ship = tunnel.getShip(type);
             if (ship != null) {
                 int cargoAmount = ship.getCapacity();

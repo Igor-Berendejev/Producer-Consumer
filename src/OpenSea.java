@@ -39,5 +39,6 @@ public class OpenSea implements Runnable {
                 e.printStackTrace();
             }
         }
+        tunnel.setLastShipEntered(true);
     }
 }
